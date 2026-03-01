@@ -40,7 +40,7 @@
 
 <br>
 
-<img alt="Image" src="./github/astro-starter-pro.png" />
+<img alt="Image" src="./github/astro-starter-pro.webp" />
 
 <br>
 
