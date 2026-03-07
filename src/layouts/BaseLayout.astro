@@ -60,13 +60,21 @@ const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
         return "light";
       };
 
-      const theme = getTheme();
-      if (theme === "light") {
-        document.documentElement.setAttribute("data-theme", "light");
-      } else {
-        document.documentElement.setAttribute("data-theme", "dark");
-      }
-      window.localStorage.setItem("theme", theme);
+      const setTheme = () => {
+        const theme = getTheme();
+        if (theme === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+        window.localStorage.setItem("theme", theme);
+      };
+
+      // Run immediately on first hard load
+      setTheme();
+
+      // Run before the new page renders during View Transitions
+      document.addEventListener("astro:after-swap", setTheme);
     </script>
   </head>
   <body
