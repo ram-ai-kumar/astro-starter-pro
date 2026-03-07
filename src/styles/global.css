@@ -47,14 +47,19 @@
 /* Animations - Reveal on Scroll */
 .reveal {
   opacity: 0;
-  transform: translateY(50px) scale(0.95);
+  transform: translateY(30px);
   transition:
-    opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
   will-change: opacity, transform;
 }
 
 .reveal.active {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
+}
+
+/* Prevent double-bounce conflicts when Astro View Transitions is actively animating */
+:root[data-astro-transition] .reveal {
+  transition: none !important;
 }

@@ -101,32 +101,57 @@ const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
     <SpeedInsights />
     <Analytics />
     <script>
-      const setupObserver = () => {
-        const observerOptions = {
-          root: null,
-          rootMargin: "0px 0px -50px 0px", // Triggers slightly before the element fully enters
-          threshold: 0.1,
-        };
+      // Keep a global reference to prevent duplicate observers during View Transitions
+      let scrollObserver: IntersectionObserver | null = null;
 
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
+      const setupAnimations = () => {
+        // Disconnect previous observer if it exists (prevents ghost triggers)
+        if (scrollObserver) {
+          scrollObserver.disconnect();
+        }
 
-        const revealElements = document.querySelectorAll(
+        // Instantly bypass scroll animations for elements already visible in viewport
+        // This solves the Astro View Transitions "double bounce" issue completely
+        document.querySelectorAll(".reveal:not(.active)").forEach((el) => {
+          if (el.getBoundingClientRect().top < window.innerHeight) {
+            // Temporarily disable transition during initial show
+            el.setAttribute(
+              "style",
+              "transition: none !important; transform: none !important;",
+            );
+            el.classList.add("active");
+            // Reactivate their explicit styles so CSS takes over next time
+            requestAnimationFrame(() => {
+              el.removeAttribute("style");
+            });
+          }
+        });
+
+        scrollObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Add class synchronously to prevent frame delays
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.1,
+          },
+        );
+
+        const remainingElements = document.querySelectorAll(
           ".reveal:not(.active)",
         );
-        revealElements.forEach((el) => observer.observe(el));
+        remainingElements.forEach((el) => scrollObserver?.observe(el));
       };
 
-      // Run on initial load
-      setupObserver();
-      // Also run on Astro view-transitions if enabled
-      document.addEventListener("astro:page-load", setupObserver);
+      document.addEventListener("astro:page-load", setupAnimations);
+      document.addEventListener("astro:after-swap", setupAnimations);
     </script>
   </body>
 </html>
