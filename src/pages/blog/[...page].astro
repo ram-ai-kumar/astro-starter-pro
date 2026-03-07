@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import Headline from "../../components/ui/Headline.astro";
-import Pagination from "../../components/ui/Pagination.astro";
-import PostItem from "../../components/blog/PostItem.astro";
+import Headline from "@/components/ui/Headline.astro";
+import Pagination from "@/components/ui/Pagination.astro";
+import PostItem from "@/components/blog/PostItem.astro";
 import type { GetStaticPathsOptions } from "astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {

@@ -1,4 +1,4 @@
-import ogImage from "../assets/og-image.png";
+import ogImage from "@/assets/og-image.png";
 
 export const siteConfig = {
   name: "Astro Starter Pro",

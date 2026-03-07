@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { siteConfig } from "../config/site";
+import { siteConfig } from "@/config/site";
 
 const robotsTxt = `
 User-agent: *
