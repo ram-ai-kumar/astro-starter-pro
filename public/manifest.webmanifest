@@ -1,0 +1,17 @@
+{
+  "name": "Astro Starter Pro",
+  "short_name": "AstroStarter",
+  "description": "Starter template optimized for SEO and performance. A solid foundation to start your projects with best practices.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0254d8",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

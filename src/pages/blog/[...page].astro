@@ -21,10 +21,15 @@ const blog = page.data;
 const metadata = {
   title: "Blog",
   description: "Latest news and updates from our team.",
+  ...(page.currentPage > 1 && { noIndex: true }),
 };
 ---
 
 <BaseLayout metadata={metadata}>
+  <Fragment slot="head">
+    {page.url.prev && <link rel="prev" href={page.url.prev} />}
+    {page.url.next && <link rel="next" href={page.url.next} />}
+  </Fragment>
   <section class="relative px-4 py-8 sm:px-6 lg:px-8 md:py-12">
     <div class="absolute inset-0 z-0">
       <div

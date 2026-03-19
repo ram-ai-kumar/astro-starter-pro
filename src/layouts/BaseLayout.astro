@@ -9,6 +9,8 @@ interface Props {
     description?: string;
     ogImage?: string;
     canonical?: string;
+    ogType?: string;
+    noIndex?: boolean;
     ignoreTitleTemplate?: boolean;
   };
 }
@@ -30,6 +32,8 @@ const finalTitle = metadata?.title || title;
 const finalDescription = metadata?.description || description;
 const finalOgImage = metadata?.ogImage || ogImage;
 const finalCanonical = metadata?.canonical || canonical;
+const finalOgType = metadata?.ogType;
+const finalNoIndex = metadata?.noIndex || false;
 const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
 ---
 
@@ -41,6 +45,8 @@ const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
       description={finalDescription}
       ogImage={finalOgImage}
       canonical={finalCanonical}
+      ogType={finalOgType}
+      noIndex={finalNoIndex}
       ignoreTitleTemplate={finalIgnoreTitleTemplate}
     />
     <ClientRouter />
@@ -94,7 +100,7 @@ const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
       </div>
 
       <Navbar />
-      <main id="main-content" class="relative z-10 grow pt-[72px]">
+      <main id="main-content" class="relative z-10 grow pt-18">
         <slot />
       </main>
       <Footer />

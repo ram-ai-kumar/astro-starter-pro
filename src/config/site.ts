@@ -10,6 +10,10 @@ export const siteConfig = {
   author: "Ram-AI-Kumar",
   twitter: "@Ram-AI-Kumar",
   ogImage: ogImage,
+  themeColor: {
+    light: "#0254d8",
+    dark: "#8bbcff",
+  },
   socialLinks: {
     twitter: "https://twitter.com",
     discord: "https://discord.com",

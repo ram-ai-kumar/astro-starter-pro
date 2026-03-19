@@ -8,8 +8,10 @@ interface Props {
     description?: string;
     image?: string;
     pubDate?: Date;
+    modDate?: Date;
     author?: string;
     url?: string;
+    breadcrumbs?: Array<{ name: string; url: string }>;
   };
 }
 
@@ -38,6 +40,7 @@ if (type === "WebSite") {
     description: data.description,
     image: data.image,
     datePublished: data.pubDate,
+    dateModified: data.modDate ?? data.pubDate,
     author: {
       "@type": "Person",
       name: data.author,
@@ -51,10 +54,20 @@ if (type === "WebSite") {
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        // Placeholder, ideally should be a real logo URL
         url: new URL("/favicon.svg", siteConfig.url).toString(),
       },
     },
+  };
+} else if (type === "BreadcrumbList" && data.breadcrumbs?.length) {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: data.breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
   };
 }
 ---
