@@ -11,6 +11,7 @@
   --color-card: var(--card);
 }
 
+/* ── Light mode (default) ── */
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
@@ -21,17 +22,46 @@
   --card: #ffffff;
 }
 
-:root[data-theme="dark"] {
-  --background: #030303;
-  --foreground: #e5e7eb;
-  --primary: #8bbcff;
-  --border: #262626;
-  --muted: #171717;
-  --muted-foreground: #a1a1aa;
-  --card: #0a0a0a;
+/* ── Dark mode: system preference (no JS required) ── */
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(#theme-toggle:checked)) {
+    --background: #030303;
+    --foreground: #e5e7eb;
+    --primary: #8bbcff;
+    --border: #262626;
+    --muted: #171717;
+    --muted-foreground: #a1a1aa;
+    --card: #0a0a0a;
+  }
 }
 
-/* Base styles using variables */
+/* ── Dark mode: user toggled (system is light/no-pref, checkbox checked) ── */
+@media not (prefers-color-scheme: dark) {
+  :root:has(#theme-toggle:checked) {
+    --background: #030303;
+    --foreground: #e5e7eb;
+    --primary: #8bbcff;
+    --border: #262626;
+    --muted: #171717;
+    --muted-foreground: #a1a1aa;
+    --card: #0a0a0a;
+  }
+}
+
+/* ── Light override: user toggled (system is dark, checkbox checked) ── */
+@media (prefers-color-scheme: dark) {
+  :root:has(#theme-toggle:checked) {
+    --background: #ffffff;
+    --foreground: #0a0a0a;
+    --primary: #0254d8;
+    --border: #e5e7eb;
+    --muted: #f4f4f5;
+    --muted-foreground: #52525b;
+    --card: #ffffff;
+  }
+}
+
+/* ── Base styles ── */
 @layer base {
   body {
     background-color: var(--background);
@@ -44,8 +74,10 @@
   }
 }
 
-/* Animations - Reveal on Scroll */
-.reveal {
+/* ── Scroll reveal ──
+   Elements are always visible without JS.
+   JS adds the 'js' class to <html>, which enables the animation. */
+.js .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition:
@@ -54,12 +86,66 @@
   will-change: opacity, transform;
 }
 
-.reveal.active {
+.js .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Prevent double-bounce conflicts when Astro View Transitions is actively animating */
+/* Prevent double-bounce conflicts during Astro View Transitions */
 :root[data-astro-transition] .reveal {
   transition: none !important;
+}
+
+/* ── Theme toggle icons ──
+   Controlled entirely by CSS based on active theme. */
+
+/* Default (light mode): show moon */
+.theme-toggle-btn .sun-icon {
+  display: none;
+}
+.theme-toggle-btn .moon-icon {
+  display: block;
+}
+
+/* Dark mode active (system dark, no override) → show sun */
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(#theme-toggle:checked)) .theme-toggle-btn .sun-icon {
+    display: block;
+  }
+  :root:not(:has(#theme-toggle:checked)) .theme-toggle-btn .moon-icon {
+    display: none;
+  }
+}
+
+/* Dark mode active (system light, user toggled to dark) → show sun */
+@media not (prefers-color-scheme: dark) {
+  :root:has(#theme-toggle:checked) .theme-toggle-btn .sun-icon {
+    display: block;
+  }
+  :root:has(#theme-toggle:checked) .theme-toggle-btn .moon-icon {
+    display: none;
+  }
+}
+
+/* ── Mobile menu (CSS-only via :has) ── */
+#mobile-menu {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  nav:has(#mobile-menu-toggle:checked) #mobile-menu {
+    display: block;
+  }
+
+  nav:has(#mobile-menu-toggle:checked) #menu-icon-closed {
+    display: none;
+  }
+
+  nav:has(#mobile-menu-toggle:checked) #menu-icon-open {
+    display: block;
+  }
+}
+
+#menu-icon-open {
+  display: none;
 }

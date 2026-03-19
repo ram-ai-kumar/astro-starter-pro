@@ -12,7 +12,6 @@ export const siteConfig = {
   ogImage: ogImage,
   socialLinks: {
     twitter: "https://twitter.com",
-    github: "https://github.com/ram-ai-kumar/astro-starter-pro",
     discord: "https://discord.com",
   },
   navLinks: [
