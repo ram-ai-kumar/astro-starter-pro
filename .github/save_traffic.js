@@ -3,7 +3,7 @@ import fs from "node:fs";
 async function saveTraffic() {
   const token = process.env.GRAPH_TOKEN;
   const repo =
-    process.env.GITHUB_REPOSITORY || "devgelo-labs/astro-starter-pro";
+    process.env.GITHUB_REPOSITORY || "ram-ai-kumar/astro-starter-pro";
   const filePath = "./.github/data/clones.json";
 
   const response = await fetch(

@@ -7,12 +7,12 @@ export const siteConfig = {
   url: "https://astrostarterpro.com",
   lang: "en",
   locale: "en_US",
-  author: "Devgelo",
-  twitter: "@Devgelo",
+  author: "Ram-AI-Kumar",
+  twitter: "@Ram-AI-Kumar",
   ogImage: ogImage,
   socialLinks: {
     twitter: "https://twitter.com",
-    github: "https://github.com/devgelo-labs/astro-starter-pro",
+    github: "https://github.com/ram-ai-kumar/astro-starter-pro",
     discord: "https://discord.com",
   },
   navLinks: [

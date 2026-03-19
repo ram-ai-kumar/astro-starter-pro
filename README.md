@@ -4,12 +4,12 @@
 
 <br>
 
-[![GitHub stars](https://badgen.net/github/stars/devgelo-labs/astro-starter-pro?icon=github&label=Star)](https://github.com/devgelo-labs/astro-starter-pro)
-[![Clones](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fangelop47%2Fastro-starter-template%2Fmain%2F.github%2Fdata%2Fclones.json&query=%24.count&label=Clones&color=brightgreen&style=flat-square&logo=github)](https://github.com/devgelo-labs/astro-starter-pro)
+[![GitHub stars](https://badgen.net/github/stars/ram-ai-kumar/astro-starter-pro?icon=github&label=Star)](https://github.com/ram-ai-kumar/astro-starter-pro)
+[![Clones](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fram-ai-kumar%2Fastro-starter-pro%2Fmain%2F.github%2Fdata%2Fclones.json&query=%24.count&label=Clones&color=brightgreen&style=flat-square&logo=github)](https://github.com/ram-ai-kumar/astro-starter-pro)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](./LICENSE)
 [![Astro](https://img.shields.io/badge/Astro-5.0-orange?style=flat-square&logo=astro)](https://astro.build/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
-[![Maintainer](https://img.shields.io/badge/maintainer-devgelo-purple?style=flat-square)](https://github.com/devgelo-labs)
+[![Maintainer](https://img.shields.io/badge/maintainer-ram--ai--kumar-purple?style=flat-square)](https://github.com/ram-ai-kumar)
 
 <br>
 
@@ -93,7 +93,7 @@ To start with this project locally, clone the repository and install dependencie
 
 ```bash
 # Clone the repository
-git clone https://github.com/devgelo-labs/astro-starter-pro.git
+git clone https://github.com/ram-ai-kumar/astro-starter-pro.git
 
 # If you like it, don't forget to leave a star! ⭐
 cd astro-starter-pro
@@ -118,12 +118,12 @@ export const siteConfig = {
   url: "https://astrostarterpro.com",
   lang: "en",
   locale: "en_US",
-  author: "Devgelo",
-  twitter: "@Devgelo",
+  author: "Ram-AI-Kumar",
+  twitter: "@Ram-AI-Kumar",
   ogImage: ogImage,
   socialLinks: {
     twitter: "https://twitter.com",
-    github: "https://github.com/devgelo-labs/astro-starter-pro",
+    github: "https://github.com/ram-ai-kumar/astro-starter-pro",
     discord: "https://discord.com",
   },
   navLinks: [
@@ -189,4 +189,4 @@ This project is under the **MIT** license. See the [LICENSE](./LICENSE) file for
 
 ---
 
-Designed by [Devgelo Labs](https://github.com/devgelo-labs)
+Designed by [Ram Kumar](https://github.com/ram-ai-kumar)
